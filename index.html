@@ -4,8 +4,182 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suffering</title>
+    <link rel="stylesheet" href="styles/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
-    
+    <section>
+        <h1>Score: 0</h1>
+        <h2>High Score: 0</h2>
+        <section class="grid">
+            <div class="row1">
+                <button class="card" id="1"></button>
+                <button class="card" id="2"></button>
+                <button class="card" id="3"></button>
+                <button class="card" id="4"></button>
+                <button class="card" id="5"></button>
+                <button class="card" id="6"></button>
+            </div>
+            <div class="row2">
+                <button class="card" id="7"></button>
+                <button class="card" id="8"></button>
+                <button class="card" id="9"></button>
+                <button class="card" id="10"></button>
+                <button class="card" id="11"></button>
+                <button class="card" id="12"></button>
+            </div>
+            <div class="row3">
+                <button class="card" id="13"></button>
+                <button class="card" id="14"></button>
+                <button class="card" id="15"></button>
+                <button class="card" id="16"></button>
+                <button class="card" id="17"></button>
+                <button class="card" id="18"></button>
+            </div>
+            <div class="row4">
+                <button class="card" id="19"></button>
+                <button class="card" id="20"></button>
+                <button class="card" id="21"></button>
+                <button class="card" id="22"></button>
+                <button class="card" id="23"></button>
+                <button class="card" id="24"></button>
+            </div>
+            <div class="row5">
+                <button class="card" id="25"></button>
+                <button class="card" id="26"></button>
+                <button class="card" id="27"></button>
+                <button class="card" id="28"></button>
+                <button class="card" id="29"></button>
+                <button class="card" id="30"></button>
+            </div>
+            <div class="row6">
+                <button class="card" id="31"></button>
+                <button class="card" id="32"></button>
+                <button class="card" id="33"></button>
+                <button class="card" id="34"></button>
+                <button class="card" id="35"></button>
+                <button class="card" id="36"></button>
+            </div>
+        </section>
+    </section>
+    <script>
+        $(document).ready(function(){
+    const types = {
+        "lebron":{
+            "name":"Lebron James",
+            "frequency":0,
+            "image":"https://i.etsystatic.com/51516337/r/il/20e70c/6287083849/il_fullxfull.6287083849_1fov.jpg",
+        },
+        "lyndonBJonhson":{
+            "name":"Lyndon B. Johnson",
+            "frequency":0,
+            "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/37_Lyndon_Johnson_3x4.jpg/800px-37_Lyndon_Johnson_3x4.jpg",
+        },
+        "pikachu":{
+            "name":"Pikachu",
+            "frequency":0,
+            "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhUI3o0VQxnb0mx2apfVxPL4_3kujpXRThdA&s",
+
+        },
+        "Eric Cartmen":{
+            "name":"Eric Cartmen",
+            "frequency":0,
+            "image":"",
+
+        },
+        "square":{
+            "name":"Square",
+            "frequency":0,
+            "image":"https://res.cloudinary.com/env-imgs/images/f_auto,w_200/shopimages/products/1200/GC140140BB-FRONT/140x140mm-clariana-bright-blue-square-120gsm-gummed-v-flap.jpg",
+
+        },
+        "triangle":{
+            "name":"Triangle",
+            "frequency":0,
+            "image":"https://static.wikia.nocookie.net/symbolism/images/2/20/Triangle.gif/revision/latest?cb=20130207152533",
+
+        },
+        "rhombus":{
+            "name":"Rhombus",
+            "frequency":0,
+            "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReX2wuAiH-KnCPRhepFXALawvmopTiW_51_g&s",
+
+        },
+        "poweranger":{
+            "name":"Poweranger",
+            "frequency":0,
+            "image":"https://cdnb.artstation.com/p/assets/images/images/057/743/851/large/iconic-design-studio-luca-nemolato-redranger-v2-34-stage1.jpg?1672536401",
+
+        },
+        "windmill":{
+            "name":"Windmill",
+            "frequency":0,
+            "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/GGParkNorthWindmill2.jpg/1200px-GGParkNorthWindmill2.jpg",
+
+        },
+        "battery":{
+            "name":"Battery",
+            "frequency":0,
+            "image":"https://webobjects2.cdw.com/is/image/CDW/5499085?$product-main$",
+        },
+        "spider":{
+            "name":"Spider",
+            "frequency":0,
+            "image":"https://preview.redd.it/ultimate-spider-man-fanart-v0-i2ilmk0dvaid1.jpeg?width=640&crop=smart&auto=webp&s=bf698915e91246555991268d1522286ba337c772",
+        },
+        "cowboyHat":{
+            "name":"Cowboy Hat",
+            "frequency":0,
+            "image":"https://shop.opry.com/cdn/shop/files/2794bl_1080x_4a4ac796-feec-445c-87e4-97499a38a465.jpg?v=1695822324",
+        },
+        "batman":{
+            "name":"Batman",
+            "frequency":0,
+            "image":"https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/batman_91.png",
+        },
+        "apple":{
+            "name":"Apple",
+            "frequency":0,
+            "image":"https://i.pinimg.com/564x/b1/f1/70/b1f170bfba5817dd84429e5b5ebbcc85.jpg",
+        },
+        "basketball":{
+            "name":"Basketball",
+            "frequency":0,
+            "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuu6ehEG7zcMmQhCYkrqBPNqxnGwYxJne3DA&s",
+        },
+        "galvanizedSquareSteel":{
+            "name":"Galvanized Square Steel",
+            "frequency":0,
+            "image":"https://preview.redd.it/i-love-the-new-galvanized-mod-v0-k06r00pstr1d1.png?auto=webp&s=1c56d5cf9c4471f68a724b366aa59149f79da9d7",
+        },
+        "dollarBill":{
+            "name":"Dollar Bill",
+            "frequency":0,
+            "image":"https://images.squarespace-cdn.com/content/v1/51dc0f2ae4b08fbe8d2c8523/1373652422804-0HUPD1WWEUBN2AZFP9SU/MW_CP_LINCOLNA.jpg?format=2500w",
+        },
+        "boomBox":{
+            "name":"Boom Box",
+            "frequency":0,
+            "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSraSnFEN8iOwUeqie8lCntPwtWnWcMTkwk6g&s",
+        },
+    }
+    let count = 36;
+    let selected =[]
+    function start(){
+        while (count > 0){
+            let num = Math.floor(Math.random() * 18)+1
+            // selected.push(types[num])
+            // num = Math.floor(Math.random() * count)+1
+            // types[num].frequency += num
+            // count-=num
+            // console.log(count)
+            // console.log(types[num].frequency)
+        }
+
+    }
+    start()
+    console.log("selected")
+});
+    </script>
 </body>
 </html>

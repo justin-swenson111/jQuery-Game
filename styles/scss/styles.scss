@@ -1,0 +1,13 @@
+@media screen and (max-width: 768px) {
+    .row{
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+    .card{
+        width: 15vw;
+        height: calc(15vw * 1.5);
+
+    }
+    
+}
