@@ -67,98 +67,116 @@
     const types = {
         "lebron":{
             "name":"Lebron James",
+            "class":'lebron',
             "frequency":0,
             "image":"https://i.etsystatic.com/51516337/r/il/20e70c/6287083849/il_fullxfull.6287083849_1fov.jpg",
         },
         "lyndonBJonhson":{
             "name":"Lyndon B. Johnson",
+            "class":"lyndon",
             "frequency":0,
             "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/37_Lyndon_Johnson_3x4.jpg/800px-37_Lyndon_Johnson_3x4.jpg",
         },
         "pikachu":{
             "name":"Pikachu",
+            "class":"pikachu",
             "frequency":0,
             "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhUI3o0VQxnb0mx2apfVxPL4_3kujpXRThdA&s",
 
         },
         "Eric Cartmen":{
             "name":"Eric Cartmen",
+            "class":"cartmen",
             "frequency":0,
             "image":"",
 
         },
         "square":{
             "name":"Square",
+            "class":"square",
             "frequency":0,
             "image":"https://res.cloudinary.com/env-imgs/images/f_auto,w_200/shopimages/products/1200/GC140140BB-FRONT/140x140mm-clariana-bright-blue-square-120gsm-gummed-v-flap.jpg",
 
         },
         "triangle":{
             "name":"Triangle",
+            "class":"triangle",
             "frequency":0,
             "image":"https://static.wikia.nocookie.net/symbolism/images/2/20/Triangle.gif/revision/latest?cb=20130207152533",
 
         },
         "rhombus":{
             "name":"Rhombus",
+            "class":"rhombus",
             "frequency":0,
             "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReX2wuAiH-KnCPRhepFXALawvmopTiW_51_g&s",
 
         },
         "poweranger":{
             "name":"Poweranger",
+            "class":"poweranger",
             "frequency":0,
             "image":"https://cdnb.artstation.com/p/assets/images/images/057/743/851/large/iconic-design-studio-luca-nemolato-redranger-v2-34-stage1.jpg?1672536401",
 
         },
         "windmill":{
             "name":"Windmill",
+            "class":"windmill",
             "frequency":0,
             "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/GGParkNorthWindmill2.jpg/1200px-GGParkNorthWindmill2.jpg",
 
         },
         "battery":{
             "name":"Battery",
+            "class":"battery",
             "frequency":0,
             "image":"https://webobjects2.cdw.com/is/image/CDW/5499085?$product-main$",
         },
         "spider":{
             "name":"Spider",
+            "class":"spider",
             "frequency":0,
             "image":"https://preview.redd.it/ultimate-spider-man-fanart-v0-i2ilmk0dvaid1.jpeg?width=640&crop=smart&auto=webp&s=bf698915e91246555991268d1522286ba337c772",
         },
         "cowboyHat":{
             "name":"Cowboy Hat",
+            "class":"cowboy",
             "frequency":0,
             "image":"https://shop.opry.com/cdn/shop/files/2794bl_1080x_4a4ac796-feec-445c-87e4-97499a38a465.jpg?v=1695822324",
         },
         "batman":{
             "name":"Batman",
+            "class":"batman",
             "frequency":0,
             "image":"https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/batman_91.png",
         },
         "apple":{
             "name":"Apple",
+            "class":"apple",
             "frequency":0,
             "image":"https://i.pinimg.com/564x/b1/f1/70/b1f170bfba5817dd84429e5b5ebbcc85.jpg",
         },
         "basketball":{
             "name":"Basketball",
+            "class":"basketball",
             "frequency":0,
             "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuu6ehEG7zcMmQhCYkrqBPNqxnGwYxJne3DA&s",
         },
         "galvanizedSquareSteel":{
             "name":"Galvanized Square Steel",
+            "class":"galvanized",
             "frequency":0,
             "image":"https://preview.redd.it/i-love-the-new-galvanized-mod-v0-k06r00pstr1d1.png?auto=webp&s=1c56d5cf9c4471f68a724b366aa59149f79da9d7",
         },
         "dollarBill":{
             "name":"Dollar Bill",
+            "class":"dollar",
             "frequency":0,
             "image":"https://images.squarespace-cdn.com/content/v1/51dc0f2ae4b08fbe8d2c8523/1373652422804-0HUPD1WWEUBN2AZFP9SU/MW_CP_LINCOLNA.jpg?format=2500w",
         },
         "boomBox":{
             "name":"Boom Box",
+            "class":"boom",
             "frequency":0,
             "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSraSnFEN8iOwUeqie8lCntPwtWnWcMTkwk6g&s",
         },
@@ -176,6 +194,16 @@
         }
     }
     start();
+    function shuffle(){
+        for (let i = 1; i <=36; i++) {
+            let ran = Math.floor(Math.random() * selected.length);
+            $(`#${i}`).css("background-image",`url(${selected[ran].image})`);
+            $(`#${i}`).toggleClass(selected[ran].class);
+            selected[ran].frequency++;
+
+        }
+    }
+    shuffle();
     console.log(selected);
 
 
