@@ -166,19 +166,22 @@
     let count = 36;
     let selected =[]
     function start(){
-        while (count > 0){
-            let num = Math.floor(Math.random() * 18)+1
-            // selected.push(types[num])
-            // num = Math.floor(Math.random() * count)+1
-            // types[num].frequency += num
-            // count-=num
-            // console.log(count)
-            // console.log(types[num].frequency)
+        const keys = Object.keys(types);
+        num = Math.floor(Math.random() * 18)+1;
+        while (selected.length < num) {
+            const randomKey = keys[Math.floor(Math.random() * keys.length)];
+            if (!selected.some(item => item.name === types[randomKey].name)) {
+                selected.push(types[randomKey]);
+            }
         }
-
     }
-    start()
-    console.log("selected")
+    start();
+    console.log(selected);
+
+
+
+    
+    
 });
     </script>
 </body>
