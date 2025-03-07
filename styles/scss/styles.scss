@@ -1,50 +1,124 @@
-@media screen and (max-width: 768px) {
-    
-    .row{
-        display: flex;
-        justify-content: space-evenly;
-        width: 100%;
-    }
-    .card{
-        width: 15vw;
-        height: calc(15vw * 1.5);
-    }
-    img{
-        width: 100%;
-        height: auto;
-    }
-    
-}
-img{
-    width: 100%;
-    height: auto;
-}
-button{
-    height: 20%;
-    width: 15%;
-}
+/* Variables */
+$button-width: 15vw;
+$button-height: calc(15vw * 1.5);
+$max-button-width: 85px;
+$max-button-height: 127px;
 
-body{
-    background-color: #333;
+/* General Styles */
+body {
+    background-color: #d8d10e;
     font-family: 'Roboto', sans-serif;
+    color: black;
 }
 
-button {
-    border-radius: 10px;
-    height: 100px;
-    width: 75px;
-  }
-
-
-h1{
-    color: #fff;
+h1 {
+    color: black;
     font-size: 2rem;
     margin: 0;
     padding: 20px;
 }
 
-h2{
-    color: #fff;
+h2 {
+    color: black;
     font-size: 1.5rem;
     margin: 0;
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    width: 90%;
+    max-width: 500px;
+    margin: auto;
+    gap: 5px;
+
+    .row {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        grid-column: span 6;
+    }
+}
+
+/* Buttons */
+button {
+    border-radius: 10px;
+    background-color: grey;
+    width: $button-width;
+    height: $button-height;
+    max-width: $max-button-width;
+    max-height: $max-button-height;
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+/* Shuffle Button */
+#shuffle {
+    position: absolute;
+    top: 37rem;
+    left: 0.5rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    $button-width: 16vw;
+    $button-height: calc(16vw * 1.5);
+    $max-button-width: 80px;
+    $max-button-height: 120px;
+    $gap-size: 5px;  /* Small gap for smaller screens */
+
+    .grid {
+        width: 100%;
+        gap: $gap-size;
+    }
+
+    button {
+        width: $button-width;
+        height: $button-height;
+        max-width: $max-button-width;
+        max-height: $max-button-height;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    $button-width: 17vw;
+    $button-height: calc(17vw * 1.5);
+    $max-button-width: 90px;
+    $max-button-height: 135px;
+    $gap-size: 8px;  /* Medium gap for mid-size screens */
+
+    .grid {
+        gap: $gap-size;
+    }
+
+    button {
+        width: $button-width;
+        height: $button-height;
+        max-width: $max-button-width;
+        max-height: $max-button-height;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    $button-width: 18vw;
+    $button-height: calc(18vw * 1.5);
+    $max-button-width: 95px;
+    $max-button-height: 140px;
+    $gap-size: 10px;  /* Larger gap for the smallest screens */
+
+    .grid {
+        gap: $gap-size;
+    }
+
+    button {
+        width: $button-width;
+        height: $button-height;
+        max-width: $max-button-width;
+        max-height: $max-button-height;
+    }
 }
