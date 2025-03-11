@@ -64,6 +64,7 @@ button {
     left: 0.5rem;
 }
 
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     $button-width: 16vw;
@@ -82,6 +83,17 @@ button {
         height: $button-height;
         max-width: $max-button-width;
         max-height: $max-button-height;
+    }
+
+    #group {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;    /* Center horizontally */
+        width: 100%;            /* Ensure it takes full width */
+        
+        p {
+            margin-bottom: 1px;
+        }
     }
 }
 
@@ -121,4 +133,8 @@ button {
         max-width: $max-button-width;
         max-height: $max-button-height;
     }
+}
+
+#group{
+    
 }

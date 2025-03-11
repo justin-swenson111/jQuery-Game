@@ -70,6 +70,15 @@ button img {
     max-width: 80px;
     max-height: 120px;
   }
+  #group {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center horizontally */
+    width: 100%; /* Ensure it takes full width */
+  }
+  #group p {
+    margin-bottom: 1px;
+  }
 }
 @media screen and (max-width: 425px) {
   /* Medium gap for mid-size screens */
