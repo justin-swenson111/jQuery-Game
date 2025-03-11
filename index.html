@@ -6,6 +6,7 @@
     <title>Suffering</title>
     <link rel="stylesheet" href="styles/css/styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <link rel="shortcut icon" href="media/favicon-16x16.png" type="image/x-icon">
 </head>
 <body>
     <section>
@@ -61,6 +62,7 @@
                 <button class="" id="36"><img src="" alt=""></button>
             </div>
             <button id="shuffle">shuffle</button>
+            <button id="start">restart</button>
         </section>
         <section id="group">
 
@@ -229,15 +231,24 @@
     let attempts =0
     let score = 0;
     let highscore = 0;
+    if (localStorage.getItem("highscore") == null){
+        localStorage.setItem("highscore",0)
+    }
+    highscore = localStorage.getItem("highscore")
+    changeScore();
+    
+
     function changeScore(){
         $("h1").text(`Score: ${score}`)
         if (score > highscore){
             highscore = score;
-            $("h2").text(`High Score: ${highscore}`)
+            localStorage.setItem("highscore",highscore)
         }
+        $("h2").text(`High Score: ${highscore}`)
     }
     function start(){
         const keys = Object.keys(types);
+        keys.forEach(key => types[key].frequency = 0);
         num = Math.floor(Math.random() * 18)+1;
         while (selected.length < num) {
             const randomKey = keys[Math.floor(Math.random() * keys.length)];
@@ -278,17 +289,24 @@
                     break;
                 }
             }
-            for (let j = 0; j < selected.length; j++) {
-                if (selected[j].class ==$(`#${i}`).attr("class")){
-                    if (selected[j].won==true){
-                        $(`#${i}`).children("img").animate({"opacity":"1"},1000)
-                }
-            }
-        }
+            found(i)
+
         }
         $("#group").empty()
         for (let i =0; i<selected.length;i++){
             $("#group").append(`<p>card type frequency: ${selected[i].frequency}</p>`)
+        }
+    }
+    function found(i){
+        for (let j = 0; j < selected.length; j++) {
+                if (selected[j].class ==$(`#${i}`).attr("class")){
+                    if (selected[j].won==true){
+                        $(`#${i}`).children("img").animate({"opacity":"1"},1000)
+                }
+                else{
+                    $(`#${i}`).children("img").animate({"opacity":"0"},1000)
+                }
+            }
         }
     }
     function gitgud(){
@@ -319,10 +337,11 @@
                     if (num==selected[i].frequency){
                         console.log("win")
                         for (let j = 0; j < group.length; j++) {
-                            if (!$(`#${group[j]}`).children("img").hasClass("won")){
-                                $(`#${group[j]}`).children("img").addClass("won")
+                            if (!selected[i].won){
+                                selected[i].won = true;
                                 score++;
                                 changeScore();
+                                group=[]
                             }
 
                         }
@@ -334,10 +353,6 @@
         else{
             for (let i = 0; i < group.length; i++) {
                 $(`#${group[i]}`).children("img").removeClass("flip")
-                if ($(`#${group[i]}`).children("img").hasClass("won")) {
-                    $(`#${group[i]}`).children("img").animate({"opacity":"1"},1000)
-                }
-                else{$(`#${group[i]}`).children("img").animate({"opacity":"0"},1000)}
             }
             group=[]
             console.log("no match")
@@ -345,6 +360,9 @@
             attempts++;
             if (attempts == 5){
                 gitgud()
+            }
+            for (let i = 1; i <=36; i++) {
+                found(i)
             }
 
         }
@@ -356,6 +374,12 @@
     $("#shuffle").on("click",function(){
         shuffle()
         
+    })
+    $("#start").on("click",function(){
+        score = 0;
+        changeScore();
+        start();
+        shuffle();
     })
 
 
