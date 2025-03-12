@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -73,385 +73,371 @@
         </div>
     </section>
     <script>
-$(document).ready(function(){
+$(document).ready(function() {
+    // Define the types of cards
     const types = {
-        "lebron":{
-            "name":"Lebron James",
-            "class":'lebron',
-            "frequency":0,
-            "image":"https://i.etsystatic.com/51516337/r/il/20e70c/6287083849/il_fullxfull.6287083849_1fov.jpg",
-            "won":false,
-            "sound":"./media/audio/lebron.mp3"
+        "lebron": {
+            "name": "Lebron James",
+            "class": 'lebron',
+            "frequency": 0,
+            "image": "https://i.etsystatic.com/51516337/r/il/20e70c/6287083849/il_fullxfull.6287083849_1fov.jpg",
+            "won": false,
+            "sound": "./media/audio/lebron.mp3"
         },
-        "lyndon":{
-            "name":"Lyndon B. Johnson",
-            "class":"lyndon",
-            "frequency":0,
-            "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/37_Lyndon_Johnson_3x4.jpg/800px-37_Lyndon_Johnson_3x4.jpg",
-            "won":false,
-            "sound":"./media/audio/lyndon.mp3"
-
-
+        "lyndon": {
+            "name": "Lyndon B. Johnson",
+            "class": "lyndon",
+            "frequency": 0,
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/37_Lyndon_Johnson_3x4.jpg/800px-37_Lyndon_Johnson_3x4.jpg",
+            "won": false,
+            "sound": "./media/audio/lyndon.mp3"
         },
-        "pikachu":{
-            "name":"Pikachu",
-            "class":"pikachu",
-            "frequency":0,
-            "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhUI3o0VQxnb0mx2apfVxPL4_3kujpXRThdA&s",
-            "won":false,
-            "sound":"./media/audio/pikachu.mp3"
-
-
-
+        "pikachu": {
+            "name": "Pikachu",
+            "class": "pikachu",
+            "frequency": 0,
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhUI3o0VQxnb0mx2apfVxPL4_3kujpXRThdA&s",
+            "won": false,
+            "sound": "./media/audio/pikachu.mp3"
         },
-        "cartmen":{
-            "name":"Eric Cartmen",
-            "class":"cartmen",
-            "frequency":0,
-            "image":"https://i.scdn.co/image/ab67616d0000b2733be777fd4bb1f5825d161920",
-            "won":false,
-            "sound":"./media/audio/cartman.mp3"
-
-
-
+        "cartmen": {
+            "name": "Eric Cartmen",
+            "class": "cartmen",
+            "frequency": 0,
+            "image": "https://i.scdn.co/image/ab67616d0000b2733be777fd4bb1f5825d161920",
+            "won": false,
+            "sound": "./media/audio/cartman.mp3"
         },
-        "dafoe":{
-            "name":"dafoe",
-            "class":"dafoe",
-            "frequency":0,
-            "image":"https://m.media-amazon.com/images/I/71Q4Whw5ScL._AC_UF894,1000_QL80_.jpg",
-            "won":false,
-            "sound":"./media/audio/dafoe.mp3"
-
-
-
+        "dafoe": {
+            "name": "dafoe",
+            "class": "dafoe",
+            "frequency": 0,
+            "image": "https://m.media-amazon.com/images/I/71Q4Whw5ScL._AC_UF894,1000_QL80_.jpg",
+            "won": false,
+            "sound": "./media/audio/dafoe.mp3"
         },
-        "justice":{
-            "name":"justice",
-            "class":"justice",
-            "frequency":0,
-            "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLX58_Xv8y2HLnmTFvXymOCqOb3SPLJY4iwg&s",
-            "won":false,
-            "sound":"./media/audio/justice.mp3"
-
-
+        "justice": {
+            "name": "justice",
+            "class": "justice",
+            "frequency": 0,
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLX58_Xv8y2HLnmTFvXymOCqOb3SPLJY4iwg&s",
+            "won": false,
+            "sound": "./media/audio/justice.mp3"
         },
-        "dblcouch":{
-            "name":"dblcouch",
-            "class":"dblcouch",
-            "frequency":0,
-            "image":"https://i.ytimg.com/vi/0PulPAsd4-g/maxresdefault.jpg",
-            "won":false,
-            "sound":"./media/audio/dblCouch.mp3"
-
-
-
+        "dblcouch": {
+            "name": "dblcouch",
+            "class": "dblcouch",
+            "frequency": 0,
+            "image": "https://i.ytimg.com/vi/0PulPAsd4-g/maxresdefault.jpg",
+            "won": false,
+            "sound": "./media/audio/dblCouch.mp3"
         },
-        "poweranger":{
-            "name":"Poweranger",
-            "class":"poweranger",
-            "frequency":0,
-            "image":"https://cdnb.artstation.com/p/assets/images/images/057/743/851/large/iconic-design-studio-luca-nemolato-redranger-v2-34-stage1.jpg?1672536401",
-            "won":false,
-            "sound":"./media/audio/powerRanger.mp3"
+        "poweranger": {
+            "name": "Poweranger",
+            "class": "poweranger",
+            "frequency": 0,
+            "image": "https://cdnb.artstation.com/p/assets/images/images/057/743/851/large/iconic-design-studio-luca-nemolato-redranger-v2-34-stage1.jpg?1672536401",
+            "won": false,
+            "sound": "./media/audio/powerRanger.mp3"
         },
-        "windmill":{
-            "name":"Windmill",
-            "class":"windmill",
-            "frequency":0,
-            "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/GGParkNorthWindmill2.jpg/1200px-GGParkNorthWindmill2.jpg",
-            "won":false,
-            "sound":"./media/audio/wind.mp3"
+        "windmill": {
+            "name": "Windmill",
+            "class": "windmill",
+            "frequency": 0,
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/GGParkNorthWindmill2.jpg/1200px-GGParkNorthWindmill2.jpg",
+            "won": false,
+            "sound": "./media/audio/wind.mp3"
         },
-        "battery":{
-            "name":"Battery",
-            "class":"battery",
-            "frequency":0,
-            "image":"https://webobjects2.cdw.com/is/image/CDW/5499085?$product-main$",
-            "won":false,
-            "sound":"./media/audio/battery.mp3"
-
-
+        "battery": {
+            "name": "Battery",
+            "class": "battery",
+            "frequency": 0,
+            "image": "https://webobjects2.cdw.com/is/image/CDW/5499085?$product-main$",
+            "won": false,
+            "sound": "./media/audio/battery.mp3"
         },
-        "spider":{
-            "name":"Spider",
-            "class":"spider",
-            "frequency":0,
-            "image":"https://preview.redd.it/ultimate-spider-man-fanart-v0-i2ilmk0dvaid1.jpeg?width=640&crop=smart&auto=webp&s=bf698915e91246555991268d1522286ba337c772",
-            "won":false,
-            "sound":"./media/audio/spider.mp3"
-
-
+        "spider": {
+            "name": "Spider",
+            "class": "spider",
+            "frequency": 0,
+            "image": "https://preview.redd.it/ultimate-spider-man-fanart-v0-i2ilmk0dvaid1.jpeg?width=640&crop=smart&auto=webp&s=bf698915e91246555991268d1522286ba337c772",
+            "won": false,
+            "sound": "./media/audio/spider.mp3"
         },
-        "cowboy":{
-            "name":"Cowboy Hat",
-            "class":"cowboy",
-            "frequency":0,
-            "image":"https://shop.opry.com/cdn/shop/files/2794bl_1080x_4a4ac796-feec-445c-87e4-97499a38a465.jpg?v=1695822324",
-            "won":false,
-            "sound":"./media/audio/cowboy.mp3"
-
-
+        "cowboy": {
+            "name": "Cowboy Hat",
+            "class": "cowboy",
+            "frequency": 0,
+            "image": "https://shop.opry.com/cdn/shop/files/2794bl_1080x_4a4ac796-feec-445c-87e4-97499a38a465.jpg?v=1695822324",
+            "won": false,
+            "sound": "./media/audio/cowboy.mp3"
         },
-        "batman":{
-            "name":"Batman",
-            "class":"batman",
-            "frequency":0,
-            "image":"https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/batman_91.png",
-            "won":false,
-            "sound":"./media/audio/batman.mp3"
-
-
+        "batman": {
+            "name": "Batman",
+            "class": "batman",
+            "frequency": 0,
+            "image": "https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/batman_91.png",
+            "won": false,
+            "sound": "./media/audio/batman.mp3"
         },
-        "apple":{
-            "name":"Apple",
-            "class":"apple",
-            "frequency":0,
-            "image":"https://i.pinimg.com/564x/b1/f1/70/b1f170bfba5817dd84429e5b5ebbcc85.jpg",
-            "won":false,
-            "sound":"./media/audio/apple.mp3"
-
-
+        "apple": {
+            "name": "Apple",
+            "class": "apple",
+            "frequency": 0,
+            "image": "https://i.pinimg.com/564x/b1/f1/70/b1f170bfba5817dd84429e5b5ebbcc85.jpg",
+            "won": false,
+            "sound": "./media/audio/apple.mp3"
         },
-        "basketball":{
-            "name":"Basketball",
-            "class":"basketball",
-            "frequency":0,
-            "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuu6ehEG7zcMmQhCYkrqBPNqxnGwYxJne3DA&s",
-            "won":false,
-            "sound":"./media/audio/ball.mp3"
-
-
+        "basketball": {
+            "name": "Basketball",
+            "class": "basketball",
+            "frequency": 0,
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuu6ehEG7zcMmQhCYkrqBPNqxnGwYxJne3DA&s",
+            "won": false,
+            "sound": "./media/audio/ball.mp3"
         },
-        "galvanized":{
-            "name":"Galvanized Square Steel",
-            "class":"galvanized",
-            "frequency":0,
-            "image":"https://preview.redd.it/i-love-the-new-galvanized-mod-v0-k06r00pstr1d1.png?auto=webp&s=1c56d5cf9c4471f68a724b366aa59149f79da9d7",
-            "won":false,
-            "sound":"./media/audio/galvanized.mp3"
-
-
+        "galvanized": {
+            "name": "Galvanized Square Steel",
+            "class": "galvanized",
+            "frequency": 0,
+            "image": "https://preview.redd.it/i-love-the-new-galvanized-mod-v0-k06r00pstr1d1.png?auto=webp&s=1c56d5cf9c4471f68a724b366aa59149f79da9d7",
+            "won": false,
+            "sound": "./media/audio/galvanized.mp3"
         },
-        "dollar":{
-            "name":"Dollar Bill",
-            "class":"dollar",
-            "frequency":0,
-            "image":"https://images.squarespace-cdn.com/content/v1/51dc0f2ae4b08fbe8d2c8523/1373652422804-0HUPD1WWEUBN2AZFP9SU/MW_CP_LINCOLNA.jpg?format=2500w",
-            "won":false,
-            "sound":"./media/audio/dollar.mp3"
-
-
+        "dollar": {
+            "name": "Dollar Bill",
+            "class": "dollar",
+            "frequency": 0,
+            "image": "https://images.squarespace-cdn.com/content/v1/51dc0f2ae4b08fbe8d2c8523/1373652422804-0HUPD1WWEUBN2AZFP9SU/MW_CP_LINCOLNA.jpg?format=2500w",
+            "won": false,
+            "sound": "./media/audio/dollar.mp3"
         },
-        "boom":{
-            "name":"Boom Box",
-            "class":"boom",
-            "frequency":0,
-            "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSraSnFEN8iOwUeqie8lCntPwtWnWcMTkwk6g&s",
-            "won":false,
-            "sound":"./media/audio/boom.mp3"
+        "boom": {
+            "name": "Boom Box",
+            "class": "boom",
+            "frequency": 0,
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSraSnFEN8iOwUeqie8lCntPwtWnWcMTkwk6g&s",
+            "won": false,
+            "sound": "./media/audio/boom.mp3"
+        }
+    };
 
-
-        },
-    }
-
+    // Initialize game variables
     let count = 36;
-    let selected =[]
-    let current = ""
-    let group = []
+    let selected = [];
+    let current = "";
+    let group = [];
     let num = 0;
-    let attempts =0
+    let attempts = 0;
     let score = 0;
     let highscore = 0;
-    if (localStorage.getItem("highscore") == null){
-        localStorage.setItem("highscore",0)
-    }
-    highscore = localStorage.getItem("highscore")
-    changeScore();
-    
 
-    function changeScore(){
-        $(".score").text(`Score: ${score}`)
-        if (score > highscore){
-            highscore = score;
-            localStorage.setItem("highscore",highscore)
-        }
-        $("h2").text(`High Score: ${highscore}`)
+    // Retrieve high score from local storage
+    if (localStorage.getItem("highscore") == null) {
+        localStorage.setItem("highscore", 0);
     }
-    function start(){
-        sound("")
+    highscore = localStorage.getItem("highscore");
+    changeScore();
+
+    // Function to update the score display
+    function changeScore() {
+        $(".score").text(`Score: ${score}`);
+        if (score > highscore) {
+            highscore = score;
+            localStorage.setItem("highscore", highscore);
+        }
+        $("h2").text(`High Score: ${highscore}`);
+    }
+
+    // Function to start the game
+    function start() {
+        // sound("");
         const keys = Object.keys(types);
         keys.forEach(key => types[key].frequency = 0);
         keys.forEach(key => types[key].won = false);
-        num = Math.floor(Math.random() * 18)+1;
+        num = Math.floor(Math.random() * 18) + 1;
         while (selected.length < num) {
             const randomKey = keys[Math.floor(Math.random() * keys.length)];
             if (!selected.some(item => item.name === types[randomKey].name)) {
                 selected.push(types[randomKey]);
             }
         }
-        for (let i = 1; i <=36; i++) {
+        for (let i = 1; i <= 36; i++) {
             let ran = Math.floor(Math.random() * selected.length);
-            $(`#${i}`).children("img").attr("src",selected[ran].image);
+            $(`#${i}`).children("img").attr("src", selected[ran].image);
             $(`#${i}`).toggleClass(selected[ran].class);
-            $(`#${i}`).children("img").animate({"opacity":"0"},1000)
+            $(`#${i}`).children("img").animate({ "opacity": "0" }, 1000);
             selected[ran].frequency++;
         }
         for (let i = 0; i < selected.length; i++) {
-            if (selected[i].frequency ==0){
+            if (selected[i].frequency == 0) {
                 selected.splice(i, 1);
             }
         }
-
     }
+
+    // Start the game initially
     start();
-    function shuffle(){
-        let temp =[]
+
+    // Function to shuffle the cards
+    function shuffle() {
+        let temp = [];
         for (let i = 0; i < selected.length; i++) {
-            temp.push(selected[i].frequency)
+            temp.push(selected[i].frequency);
         }
-        for (let i = 1; i <=36; i++) {
-            while (true){
+        for (let i = 1; i <= 36; i++) {
+            while (true) {
                 let ran = Math.floor(Math.random() * selected.length);
-                if (temp[ran] > 0){
-                    for(let j = 0; j < selected.length; j++){
+                if (temp[ran] > 0) {
+                    for (let j = 0; j < selected.length; j++) {
                         $(`#${i}`).removeClass(selected[j].class);
                     }
-                    $(`#${i}`).children("img").attr("src",selected[ran].image);
+                    $(`#${i}`).children("img").attr("src", selected[ran].image);
                     $(`#${i}`).toggleClass(selected[ran].class);
                     temp[ran]--;
                     break;
                 }
             }
-            found(i)
-
+            found(i);
         }
-        $("#group").empty()
-        for (let i =0; i<selected.length;i++){
-            $("#group").append(`<p>card type frequency: ${selected[i].frequency}</p>`)
+        $("#group").empty();
+        for (let i = 0; i < selected.length; i++) {
+            $("#group").append(`<p>card type frequency: ${selected[i].frequency}</p>`);
         }
     }
-    function found(i){
+
+    // Function to handle found cards
+    function found(i) {
         for (let j = 0; j < selected.length; j++) {
-                if (selected[j].class ==$(`#${i}`).attr("class")){
-                    if (selected[j].won==true){
-                        $(`#${i}`).children("img").animate({"opacity":"1"},1000)
-                }
-                else{
-                    $(`#${i}`).children("img").animate({"opacity":"0"},1000)
+            if (selected[j].class == $(`#${i}`).attr("class")) {
+                if (selected[j].won == true) {
+                    $(`#${i}`).children("img").animate({ "opacity": "1" }, 1000);
+                } else {
+                    $(`#${i}`).children("img").animate({ "opacity": "0" }, 1000);
                 }
             }
-                }
-                }
-                function sound(src){
-                if (window.currentAudio) {
-                    window.currentAudio.pause();
-                    window.currentAudio.currentTime = 0;
-                }
-                window.currentAudio = new Audio(src);
-                window.currentAudio.play();
-                const time = setTimeout(function(){
-                    window.currentAudio.pause();
-                    window.currentAudio.currentTime = 0;
-                    console.log("stop");
-                }, 5750);
-                }
-    function gitgud(){
+        }
+    }
+
+    // Function to play sound
+    function sound(src) {
+        console.log("play")
+        if (window.currentAudio) {
+            window.currentAudio.pause();
+            window.currentAudio.currentTime = 0;
+        }
+        window.currentAudio = new Audio(src);
+        window.currentAudio.play();
+        const time = setTimeout(function() {
+            window.currentAudio.pause();
+            window.currentAudio.currentTime = 0;
+            console.log("stop");
+        }, 5750);
+    }
+
+    // Function to handle incorrect attempts
+    function gitgud() {
         attempts = 0;
-        let rand = Math.floor(Math.random() * 5)+1;
+        let rand = Math.floor(Math.random() * 5) + 1;
         let inp;
         do {
             inp = prompt("guess a number one through five");
         } while (isNaN(inp));
-        if (inp != rand){
-            alert("WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        if (inp != rand) {
+            alert("WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             shuffle();
-                }
-                }
-                let canClick = true;
-                $("button").on("click", function(){
-                if (!canClick) return;
-                canClick = false;
-                setTimeout(() => canClick = true, 5750);
+        }
+    }
 
-                $(this).children("img").addClass("flip")
-                $(this).children("img").animate({"opacity":"1"},1000)
+    // Handle button clicks
+    let canClick = true;
+    $("button").on("click", function() {
+        if (!canClick) return;
+        canClick = false;
+        const time = setTimeout(() => canClick = true, 5750);
 
-                if(group.length == 0){
-                    num=0;
-                }
-                group.push($(this).attr("id"))
-                if ($(this).attr("class") == $(`#${group[0]}`).attr("class")){
-                    console.log("match")
-                    num++;
-                    for (let i = 0; i < selected.length; i++) {
-                    if (selected[i].class == $(this).attr("class")){
-                        if (num==selected[i].frequency){
-                        console.log("win")
+        $(this).children("img").addClass("flip");
+        $(this).children("img").animate({ "opacity": "1" }, 1000);
+
+        if (group.length == 0) {
+            num = 0;
+        }
+        group.push($(this).attr("id"));
+        let soundPlayed = false;
+        if ($(this).attr("class") == $(`#${group[0]}`).attr("class")) {
+            console.log("match");
+            num++;
+            for (let i = 0; i < selected.length; i++) {
+                if (selected[i].class == $(this).attr("class")) {
+                    if (num == selected[i].frequency) {
+                        console.log("win");
                         for (let j = 0; j < group.length; j++) {
-                            if (!selected[i].won){
-                            selected[i].won = true;
-                            score+=Math.floor(Math.random() * 15)+1;
-                            changeScore();
-                            group=[]
+                            if (!selected[i].won) {
+                                selected[i].won = true;
+                                score += Math.floor(Math.random() * 15) + 1;
+                                changeScore();
+                                group = [];
+                                sound(selected[i].sound);
                             }
-
-                        }
-                        }
-
-                    }
-                    }
-                    console.log(num)
-                }
-                else{
-                    for (let i = 0; i < group.length; i++) {
-                    $(`#${group[i]}`).children("img").removeClass("flip")
-                    }
-                    group=[]
-                    console.log("no match")
-                    num=0;
-                    attempts++;
-                    if (attempts == 5){
-                    gitgud()
-                    }
-                    for (let i = 1; i <=36; i++) {
-                    found(i)
-                    }
-
-                }
-                let soundPlayed = false;
-                for (let i = 0; i < selected.length; i++) {
-                    for (let j = 0; j < group.length; j++) {
-                        if (selected[i].class == $(`#${group[j]}`).attr("class") && !soundPlayed) {
-                            sound(selected[i].sound);
-                            soundPlayed = true;
                         }
                     }
                 }
-                let wonall
-                for (let i = 1; i <selected.length; i++) {
-                    if (selected[i].won == true){
-                    wonall++;
-                    }
+            }
+            console.log(num);
+        } else {
+            for (let i = 0; i < group.length; i++) {
+                $(`#${group[i]}`).children("img").removeClass("flip");
+            }
+            group = [];
+            console.log("no match");
+            num = 0;
+            attempts++;
+            if (attempts == 5) {
+                gitgud();
+            }
+            for (let i = 1; i <= 36; i++) {
+                found(i);
+            }
+            canClick = true;
+            clearInterval(time);
+        }
+
+        for (let i = 0; i < selected.length; i++) {
+            for (let j = 0; j < group.length; j++) {
+                if (selected[i].class == $(`#${group[j]}`).attr("class")) {
+                    sound(selected[i].sound);
+                    soundPlayed = true;
                 }
-                if (wonall == selected.length){
-                    alert("You Win");
-                }
-                
-                })
+            }
+        }
+
+        let wonall = 0;
+        for (let i = 0; i < selected.length; i++) {
+            if (selected[i].won == true) {
+                wonall++;
+            }
+        }
+        if (wonall == selected.length) {
+            alert("You Win");
+        }
+    });
+
+    // Shuffle cards initially
     shuffle();
     console.log(selected);
-    $("#shuffle").on("click",function(){
-        shuffle()
-        
-    })
-    $("#start").on("click",function(){
+
+    // Handle shuffle button click
+    $("#shuffle").on("click", function() {
+        shuffle();
+    });
+
+    // Handle restart button click
+    $("#start").on("click", function() {
         score = 0;
         changeScore();
         start();
         shuffle();
-    })
-
+    });
 });
     </script>
 </body>
