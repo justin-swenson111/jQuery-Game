@@ -249,7 +249,7 @@
     function start(){
         const keys = Object.keys(types);
         keys.forEach(key => types[key].frequency = 0);
-        keys.forEach(key => types[key].win = false);
+        keys.forEach(key => types[key].won = false);
         num = Math.floor(Math.random() * 18)+1;
         while (selected.length < num) {
             const randomKey = keys[Math.floor(Math.random() * keys.length)];
