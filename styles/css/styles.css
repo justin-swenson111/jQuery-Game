@@ -1,22 +1,26 @@
 /* Variables */
 /* General Styles */
 body {
-  background-color: #d8d10e;
+  background-color: #36fafa;
   font-family: "Roboto", sans-serif;
   color: black;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  color: black;
+  margin: 0;
+  text-align: center;
 }
 
 h1 {
-  color: black;
   font-size: 2rem;
-  margin: 0;
   padding: 20px;
 }
 
 h2 {
-  color: black;
   font-size: 1.5rem;
-  margin: 0;
 }
 
 /* Grid Layout */
@@ -25,7 +29,8 @@ h2 {
   grid-template-columns: repeat(6, 1fr);
   width: 90%;
   max-width: 500px;
-  margin: auto;
+  margin: 0 auto;
+  margin-top: 10px;
   gap: 5px;
 }
 .grid .row {
@@ -43,26 +48,72 @@ button {
   height: 22.5vw;
   max-width: 85px;
   max-height: 127px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 button img {
   width: 100%;
   height: auto;
   display: block;
+  border-radius: 8px;
 }
 
 /* Shuffle Button */
 #shuffle {
-  position: absolute;
-  top: 37rem;
-  left: 0.5rem;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 15px;
+  background-color: #06dede;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+#restart {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: #06dede;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+/* Group Styling */
+#group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+#group p {
+  margin: 0;
+  padding: 5px 10px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
 }
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-  /* Small gap for smaller screens */
   .grid {
-    width: 100%;
-    gap: 5px;
+    width: 95%;
+    gap: 8px;
   }
   button {
     width: 16vw;
@@ -71,19 +122,20 @@ button img {
     max-height: 120px;
   }
   #group {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center horizontally */
-    width: 100%; /* Ensure it takes full width */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
   #group p {
-    margin-bottom: 1px;
+    margin-bottom: 5px;
+    width: 80%;
+    text-align: center;
   }
 }
 @media screen and (max-width: 425px) {
-  /* Medium gap for mid-size screens */
   .grid {
-    gap: 8px;
+    gap: 6px;
+    width: 98%;
   }
   button {
     width: 17vw;
@@ -91,16 +143,30 @@ button img {
     max-width: 90px;
     max-height: 135px;
   }
+  h1 {
+    font-size: 1.8rem;
+    padding: 15px;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
 }
 @media screen and (max-width: 320px) {
-  /* Larger gap for the smallest screens */
   .grid {
-    gap: 10px;
+    gap: 4px;
+    width: 100%;
   }
   button {
     width: 18vw;
     height: 27vw;
     max-width: 95px;
     max-height: 140px;
+  }
+  h1 {
+    font-size: 1.6rem;
+    padding: 10px;
+  }
+  h2 {
+    font-size: 1.2rem;
   }
 }/*# sourceMappingURL=styles.css.map */
