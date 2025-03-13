@@ -73,10 +73,10 @@ h2 {
 
 /* Buttons */
 button {
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: $button-bg-color;
   @include button-size($button-width-base, $button-height-ratio, $max-button-width-base, $max-button-height-base);
-  border: none;
+  border: black 3px solid;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   
@@ -111,7 +111,7 @@ button {
   z-index: 100;
 }
 
-#restart{
+#start{
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -213,4 +213,8 @@ button {
   h2 {
     font-size: 1.2rem;
   }
+}
+
+.row{
+  gap: 10px;
 }

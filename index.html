@@ -73,7 +73,7 @@
         </div>
     </section>
     <script>
-$(document).ready(function() {
+        $(document).ready(function() {
     // Define the types of cards
     const types = {
         "lebron": {
@@ -231,6 +231,8 @@ $(document).ready(function() {
     let attempts = 0;
     let score = 0;
     let highscore = 0;
+    let gameStarted = false;
+    let canClick = false;  // Initially prevent clicking until cards are shown and hidden
 
     // Retrieve high score from local storage
     if (localStorage.getItem("highscore") == null) {
@@ -249,12 +251,69 @@ $(document).ready(function() {
         $("h2").text(`High Score: ${highscore}`);
     }
 
+    // Function to show countdown timer
+    function showCountdown(seconds) {
+        // Create countdown element if it doesn't exist
+        if ($("#countdown").length === 0) {
+            $("body").append('<div id="countdown" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 5rem; color: #f00; z-index: 1000;"></div>');
+        }
+        
+        $("#countdown").text(seconds);
+        
+        if (seconds > 0) {
+            setTimeout(() => showCountdown(seconds - 1), 1000);
+        } else {
+            $("#countdown").remove();
+            // Hide cards after countdown
+            for (let i = 1; i <= 36; i++) {
+                if (!cardIsWon(i)) {
+                    $(`#${i}`).children("img").animate({ "opacity": "0" }, 500);
+                }
+            }
+            canClick = true; // Enable clicking after cards are hidden
+        }
+    }
+
+    // Function to check if a card is already won
+    function cardIsWon(cardId) {
+        const cardClass = $(`#${cardId}`).attr("class");
+        for (let i = 0; i < selected.length; i++) {
+            if (cardClass.includes(selected[i].class) && selected[i].won) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Function to start the game
     function start() {
-        // sound("");
+        // Reset variables
+        selected = [];
+        group = [];
+        num = 0;
+        attempts = 0;
+        gameStarted = true;
+        canClick = false;  // Disable clicking during reveal
+        
+        // Reset card classes and images
+        for (let i = 1; i <= 36; i++) {
+            const card = $(`#${i}`);
+            // Remove all possible class types
+            for (const key in types) {
+                card.removeClass(types[key].class);
+            }
+            card.children("img").css("opacity", "0");
+            card.children("img").removeClass("flip");
+        }
+        
+        // Reset card types
         const keys = Object.keys(types);
-        keys.forEach(key => types[key].frequency = 0);
-        keys.forEach(key => types[key].won = false);
+        keys.forEach(key => {
+            types[key].frequency = 0;
+            types[key].won = false;
+        });
+        
+        // Select random card types
         num = Math.floor(Math.random() * 18) + 1;
         while (selected.length < num) {
             const randomKey = keys[Math.floor(Math.random() * keys.length)];
@@ -262,18 +321,33 @@ $(document).ready(function() {
                 selected.push(types[randomKey]);
             }
         }
+        
+        // Assign cards to the board
         for (let i = 1; i <= 36; i++) {
             let ran = Math.floor(Math.random() * selected.length);
             $(`#${i}`).children("img").attr("src", selected[ran].image);
-            $(`#${i}`).toggleClass(selected[ran].class);
-            $(`#${i}`).children("img").animate({ "opacity": "0" }, 1000);
+            $(`#${i}`).addClass(selected[ran].class);
             selected[ran].frequency++;
         }
+        
+        // Remove card types with zero frequency
         for (let i = 0; i < selected.length; i++) {
             if (selected[i].frequency == 0) {
                 selected.splice(i, 1);
+                i--;
             }
         }
+        
+        // Show all cards for 3 seconds
+        for (let i = 1; i <= 36; i++) {
+            $(`#${i}`).children("img").css("opacity", "1");
+        }
+        
+        // Start countdown
+        showCountdown(3);
+        
+        // Update the group display
+        updateGroupDisplay();
     }
 
     // Start the game initially
@@ -285,25 +359,26 @@ $(document).ready(function() {
         for (let i = 0; i < selected.length; i++) {
             temp.push(selected[i].frequency);
         }
+        
         for (let i = 1; i <= 36; i++) {
             while (true) {
                 let ran = Math.floor(Math.random() * selected.length);
                 if (temp[ran] > 0) {
+                    // Remove all possible class types
                     for (let j = 0; j < selected.length; j++) {
                         $(`#${i}`).removeClass(selected[j].class);
                     }
                     $(`#${i}`).children("img").attr("src", selected[ran].image);
-                    $(`#${i}`).toggleClass(selected[ran].class);
+                    $(`#${i}`).addClass(selected[ran].class);
                     temp[ran]--;
                     break;
                 }
             }
             found(i);
         }
-        $("#group").empty();
-        for (let i = 0; i < selected.length; i++) {
-            $("#group").append(`<p>card type frequency: ${selected[i].frequency}</p>`);
-        }
+        
+        // Update the group display
+        updateGroupDisplay();
     }
 
     // Function to handle found cards
@@ -319,8 +394,18 @@ $(document).ready(function() {
         }
     }
 
-    // Function to play sound
-   // Function to play sound with reliable reset
+    // Function to update group display - only show frequencies for non-matched types
+    function updateGroupDisplay() {
+        $("#group").empty();
+        for (let i = 0; i < selected.length; i++) {
+            // Only display frequency for types that haven't been fully matched
+            if (!selected[i].won) {
+                $("#group").append(`<p>card type frequency: ${selected[i].frequency}</p>`);
+            }
+        }
+    }
+
+    // Function to play sound with reliable reset
     function sound(src) {
         console.log("play");
         
@@ -332,7 +417,6 @@ $(document).ready(function() {
         if (window.currentAudio) {
             window.currentAudio.pause();
             window.currentAudio.currentTime = 0;
-            
             window.currentAudio = null;
         }
         
@@ -375,12 +459,31 @@ $(document).ready(function() {
         }
     }
 
+    // Function to check if all matches are found
+    function checkAllMatched() {
+        let allMatched = true;
+        for (let i = 0; i < selected.length; i++) {
+            if (!selected[i].won) {
+                allMatched = false;
+                break;
+            }
+        }
+        return allMatched;
+    }
+
     // Handle button clicks
-    let canClick = true;
     $("button").on("click", function() {
+        // Don't process clicks on the shuffle or start buttons
+        if ($(this).attr("id") === "shuffle" || $(this).attr("id") === "start") {
+            return;
+        }
+        
+        // Ignore clicks until the initial reveal is complete
         if (!canClick) return;
+        
+        // Temporarily disable clicking to prevent rapid clicks
         canClick = false;
-        const time = setTimeout(() => canClick = true, 0);
+        setTimeout(() => canClick = true, 300);
 
         $(this).children("img").addClass("flip");
         $(this).children("img").animate({ "opacity": "1" }, 1000);
@@ -390,29 +493,37 @@ $(document).ready(function() {
         }
         group.push($(this).attr("id"));
         let soundPlayed = false;
-        if ($(this).attr("class") == $(`#${group[0]}`).attr("class")) {
+        
+        if ($(this).attr("class").includes($(`#${group[0]}`).attr("class"))) {
             console.log("match");
             num++;
+            
+            // Check which card type was matched
             for (let i = 0; i < selected.length; i++) {
-                if (selected[i].class == $(this).attr("class")) {
+                if ($(this).hasClass(selected[i].class)) {
                     if (num == selected[i].frequency) {
                         console.log("win");
-                        for (let j = 0; j < group.length; j++) {
-                            if (!selected[i].won) {
-                                selected[i].won = true;
-                                score += Math.floor(Math.random() * 100) + 1;
-                                changeScore();
-                                group = [];
-                                sound(selected[i].sound);
-                            }
+                        if (!selected[i].won) {
+                            selected[i].won = true;
+                            score += Math.floor(Math.random() * 100) + 1;
+                            changeScore();
+                            sound(selected[i].sound);
+                            
+                            // Immediately update group display when a type is fully matched
+                            updateGroupDisplay();
                         }
+                        group = [];
+                        num = 0;
                     }
                 }
             }
-            console.log(num);
         } else {
             for (let i = 0; i < group.length; i++) {
                 $(`#${group[i]}`).children("img").removeClass("flip");
+                // Only hide cards that aren't part of a won set
+                if (!cardIsWon(group[i])) {
+                    $(`#${group[i]}`).children("img").animate({ "opacity": "0" }, 1000);
+                }
             }
             group = [];
             console.log("no match");
@@ -421,30 +532,31 @@ $(document).ready(function() {
             if (attempts == 5) {
                 gitgud();
             }
-            for (let i = 1; i <= 36; i++) {
-                found(i);
-            }
-            canClick = true;
-            clearInterval(time);
         }
 
+        // Play sound for the card type
         for (let i = 0; i < selected.length; i++) {
             for (let j = 0; j < group.length; j++) {
-                if (selected[i].class == $(`#${group[j]}`).attr("class")) {
+                if ($(`#${group[j]}`).hasClass(selected[i].class) && !soundPlayed) {
                     sound(selected[i].sound);
                     soundPlayed = true;
+                    break;
                 }
             }
+            if (soundPlayed) break;
         }
 
-        let wonall = 0;
-        for (let i = 0; i < selected.length; i++) {
-            if (selected[i].won == true) {
-                wonall++;
-            }
-        }
-        if (wonall == selected.length) {
-            alert("You Win");
+        // Check if all cards are matched
+        if (checkAllMatched()) {
+            setTimeout(function() {
+                const playAgain = confirm("You Win! Do you want to play again?");
+                if (playAgain) {
+                    score = 0;
+                    changeScore();
+                    start();
+                    shuffle();
+                }
+            }, 1000);
         }
     });
 
