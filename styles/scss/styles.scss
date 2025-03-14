@@ -68,6 +68,7 @@ h2 {
     justify-content: space-evenly;
     width: 100%;
     grid-column: span 6;
+    gap: 10px;
   }
 }
 
@@ -215,6 +216,4 @@ button {
   }
 }
 
-.row{
-  gap: 10px;
-}
+
