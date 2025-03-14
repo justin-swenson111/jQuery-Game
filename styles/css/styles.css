@@ -1,15 +1,15 @@
 /* Variables */
 /* General Styles */
 body {
-  background-color: #36fafa;
+  background-color: #480000;
   font-family: "Roboto", sans-serif;
-  color: black;
+  color: #FAF9F6;
   margin: 0;
   padding: 0;
 }
 
 h1, h2 {
-  color: black;
+  color: #FAF9F6;
   margin: 0;
   text-align: center;
 }
@@ -73,7 +73,7 @@ button img {
   bottom: 20px;
   left: 20px;
   padding: 10px 15px;
-  background-color: #06dede;
+  background-color: black;
   color: white;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -85,7 +85,7 @@ button img {
   bottom: 20px;
   right: 20px;
   padding: 10px 15px;
-  background-color: #06dede;
+  background-color: black;
   color: white;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
